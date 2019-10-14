@@ -1,0 +1,38 @@
+create database QLSV
+go
+use QLSV
+go
+create table student(
+    idST int primary key,
+    nameST nvarchar(30) not null,
+	age int not null,
+)
+create table Class(
+    idcl int  primary key,
+	Namecl nvarchar(50) not null,	
+)
+create table Student_class(
+	idstc int primary key,
+    idclass int foreign key references Class(idcl),
+	idSt int foreign key references Student(idST),
+)
+create table Dayoff(
+    idDay int  primary key,
+	idSt int foreign key references Student(idSt),
+	dayOff date,
+)
+create table Dayoff_Class(
+    idDay int foreign key references Dayoff(idDay),
+	idSt int foreign key references Student(idSt),
+	idClass int foreign key references Class(idcl),
+)
+insert into  Student(idSt,nameSt,age)
+values ('01','Le Van A','19')
+insert into  Student(idSt,nameSt,age)
+values ('02','Le Van B','18')
+insert into Class(idcl,Namecl)
+values('102','Java 01')
+insert into Class(idcl,Namecl)
+values('103','Csdl SQL')
+insert into Class(idcl,Namecl)
+values('101','Vat Ly')
